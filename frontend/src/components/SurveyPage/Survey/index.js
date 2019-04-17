@@ -40,7 +40,7 @@ export default class Survey extends Component {
      <div style={{backgroundColor: 'blue'}}>
         <h2>Survey</h2>
         <ProgBar ans={this.state.answered} i={this.state.i} func={this.changeQuestion}/>
-        <Question title = {this.state.questions[this.state.i]['title']} text={this.state.questions[this.state.i]['text']} i={this.state.i} func={this.answerQuestion} value=""/>
+        <Question key={this.state.i} title = {this.state.questions[this.state.i]['title']} text={this.state.questions[this.state.i]['text']} i={this.state.i} func={this.answerQuestion} value=""/>
         {this.state.i != 0 && <button onClick={() => this.changeQuestion(this.state.i-1)}>back</button>}
         {this.state.i != this.state.questions.length-1 && <button onClick={() => this.changeQuestion(this.state.i+1)}>next</button>}
         {this.state.i == this.state.questions.length-1 && <button onClick={() => this.props.submit(this.state.answers)}>submit</button>}
