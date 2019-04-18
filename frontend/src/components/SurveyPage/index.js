@@ -10,7 +10,7 @@ export default class SurveyPage extends Component {
      showIntro: true,
      showSurvey: false,
      showResult: false,
-     answers: {}
+     result: {}
    }
  }
  startSurvey = () => {
@@ -19,11 +19,11 @@ export default class SurveyPage extends Component {
      showSurvey: true
    })
  }
- endSurvey = (ans) => {
+ endSurvey = (result) => {
    this.setState({
      showResult: true,
      showSurvey: false,
-     answers: ans
+     result
    })
  }
  reset = () => {
@@ -31,7 +31,7 @@ export default class SurveyPage extends Component {
      showIntro: true,
      showResult: false,
      showSurvey: false,
-     answers: {}
+     result: {}
    })
  }
  render() {
@@ -40,7 +40,7 @@ export default class SurveyPage extends Component {
         <h2>Survey Page</h2>
         {this.state.showIntro && <Intro func={this.startSurvey}/>}
         {this.state.showSurvey && <Survey submit={this.endSurvey}/>}
-        {this.state.showResult && <Result answers={this.state.answers} reset={this.reset}/>}
+        {this.state.showResult && <Result result={this.state.result} reset={this.reset}/>}
      </div>
    )
  }

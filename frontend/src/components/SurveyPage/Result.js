@@ -8,16 +8,19 @@ export default class Result extends Component {
    }
  }
  render() {
+   const {titles,questions,answers} = this.props.result;
    return(
      <div style={{backgroundColor: 'orange'}}>
         <h2>Good job, you're done.</h2>
         {
-          Object.keys(this.props.answers).map(
-            function(title, i){
-              return <div><span>{title}: </span><span>{this.answers[title]}</span></div>
-            },
-            {
-              answers: this.props.answers
+          questions.map(
+            function(question, i){
+              return (
+                <div key={i}>
+                  <span>{titles[i]}: </span>
+                  <span>{answers[i]}</span>
+                </div>
+              )
             }
           )
         }

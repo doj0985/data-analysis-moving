@@ -8,15 +8,9 @@ export default class Survey extends Component {
    super(props)
    this.state = {
      answered: [0, 0, 0],
-     answers: {},
-     questions: [
-       {title: "q1", text:"1"},
-       {title: "q2", text:"2"},
-       {title: "q3", text:"3"}
-       // <Question title = "q1" text="1" i={0} func={this.answerQuestion}/>,
-       // <Question title = "q2" text="2" i={1} func={this.answerQuestion}/>,
-       // <Question title = "q3" text="3" i={2} func={this.answerQuestion}/>
-     ],
+     answers: [],
+     titles : ['q1','q2','q3'],
+     questions: ['1','2','3'],
      i: 0
    }
  }
@@ -25,25 +19,51 @@ export default class Survey extends Component {
      i: x
    });
  }
- answerQuestion = (i, title, answer) => {
-   var ansrd = this.state.answered;
+
+ onChange = (event) => {
+   let answers = [...this.state.answers]
+   answers[event.target.name] = event.target.value
+   this.setState({answers})
+ }
+
+ answerQuestion = (i, answer) => {
+   let ansrd = [...this.state.answered];
    ansrd[i] = 1;
-   var ansrs = this.state.answers;
-   ansrs[title] = answer;
+   var ansrs = [...this.state.answers];
+   ansrs[i] = answer;
    this.setState({
      answered: ansrd,
      answers: ansrs
    })
  }
  render() {
+   const {i,questions,titles,answers,answered} = this.state;
    return(
      <div style={{backgroundColor: 'blue'}}>
         <h2>Survey</h2>
-        <ProgBar ans={this.state.answered} i={this.state.i} func={this.changeQuestion}/>
-        <Question key={this.state.i} title = {this.state.questions[this.state.i]['title']} text={this.state.questions[this.state.i]['text']} i={this.state.i} func={this.answerQuestion} value=""/>
-        {this.state.i != 0 && <button onClick={() => this.changeQuestion(this.state.i-1)}>back</button>}
-        {this.state.i != this.state.questions.length-1 && <button onClick={() => this.changeQuestion(this.state.i+1)}>next</button>}
-        {this.state.i == this.state.questions.length-1 && <button onClick={() => this.props.submit(this.state.answers)}>submit</button>}
+        <ProgBar ans={answered} i={i} func={this.changeQuestion}/>
+        <Question 
+          title = {titles[i]} 
+          text={questions[i]} 
+          key={i} 
+          onSubmit={this.answerQuestion}
+          onChange={this.onChange}
+        />
+        {i != 0 && 
+          <button onClick={() => this.changeQuestion(i-1)}>
+            back
+          </button>
+        }
+        {i != questions.length-1 && 
+          <button onClick={() => this.changeQuestion(i+1)}>
+            next
+          </button>
+        }
+        {i == questions.length-1 && 
+          <button onClick={() => this.props.submit({titles,questions,answers})}>
+          submit
+          </button>
+        }
      </div>
    )
  }
