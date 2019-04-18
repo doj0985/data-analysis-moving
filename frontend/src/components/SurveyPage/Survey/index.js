@@ -37,7 +37,7 @@ export default class Survey extends Component {
    })
  }
  render() {
-   const {i,questions,titles,answers,answered} = this.state;
+   const {i,questions,titles,answered,answers} = this.state;
    return(
      <div style={{backgroundColor: 'blue'}}>
         <h2>Survey</h2>
