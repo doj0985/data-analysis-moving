@@ -10,6 +10,23 @@ from sklearn.preprocessing import FunctionTransformer
 from functools import reduce
 
 def predict(request):
+    if request.method == 'OPTIONS':
+        # Allows GET requests from any origin with the Content-Type
+        # header and caches preflight response for an 3600s
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Max-Age': '3600'
+        }
+
+        return ('', 204, headers)
+
+    headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type'
+    }
+
+
     def default(o):
         if isinstance(o, np.int64): return int(o)
         raise TypeError
@@ -27,7 +44,7 @@ def predict(request):
 #     print(weighted_value_dict)
 
 #     sort the dataframe out
-    df = pd.read_csv('binned_data.csv')
+    df = pd.read_csv('Austin_Neighborhoods.csv')
     for item in weight_dict.items():
         df[item[0]] = df[item[0]].apply(lambda a: a*item[1])
 #     print(df)
@@ -45,7 +62,7 @@ def predict(request):
     X = np.reshape(a=wv_input, newshape=(1, -1))
     # print(knc.kneighbors(X, 20, True))
     # print(knc.kneighbors_graph(X, 5, 'distance'))
-    kneighbors = knc.kneighbors(X, 5, True)
+    kneighbors = knc.kneighbors(X, 92, True)
     indexes = kneighbors[1].tolist()[0]
     distances = kneighbors[0].tolist()[0]
 #     print(indexes)
@@ -60,7 +77,7 @@ def predict(request):
 #     print()
 
     result = []
-    weights = [weight_dict[k] for k in weight_dict.keys()]
+    weights = [weight_dict[k] for k in value_dict.keys()]
     weights = np.square([weight*4 for weight in weights])
 #     print(weights)
     weight_sum = reduce(lambda a,b: a + b, weights)
@@ -80,4 +97,4 @@ def predict(request):
         ndict['closeness'] = closeness
         result.append(ndict)
 #         print()
-    return json.dumps(result, default=default)
+    return (json.dumps(result, default=default),200,headers)

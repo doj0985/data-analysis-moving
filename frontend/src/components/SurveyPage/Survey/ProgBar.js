@@ -7,20 +7,20 @@ export default class ProgBar extends Component {
  }
  render() {
    return(
-     <div style={{backgroundColor: 'green'}}>
+     <div class='survey_progress'>
        {
          this.props.ans.map(
            function(done, i){
              if (done == 1){
                if(this.i == i){
-                 return <span>X</span>
+                 return <i class="fas fa-question-circle fa-2x prog" style={{color: '#5db333'}}></i>;
                }
-               return <span onClick={() => this.func(i)}>x</span>;
+               return <i class="fas fa-question-circle fa-2x prog" style={{color: 'black'}} onClick={() => this.func(i)}></i>;
              } else {
                if(this.i == i){
-                 return <span>O</span>
+                 return <i class="far fa-question-circle fa-2x prog" style={{color: '#5db333'}}></i>;
                }
-               return <span onClick={() => this.func(i)}>o</span>;
+               return <i class="far fa-question-circle fa-2x prog" style={{color: 'black'}} onClick={() => this.func(i)}></i>;
              }
            },
            {

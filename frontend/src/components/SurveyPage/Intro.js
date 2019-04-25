@@ -9,8 +9,8 @@ export default class Intro extends Component {
  }
  render() {
    return(
-     <div style={{backgroundColor: 'orange'}}>
-        <h2>Welcome to Survey</h2>
+     <div>
+        <h2>Welcome to Village</h2>
         <button onClick={() => this.props.func()}>Start</button>
      </div>
    )

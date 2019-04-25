@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Survey from './Survey';
 import Intro from './Intro.js';
 import Result from './Result.js';
+import Image from "./logo.png";
 
 export default class SurveyPage extends Component {
  constructor(props) {
@@ -10,7 +11,8 @@ export default class SurveyPage extends Component {
      showIntro: true,
      showSurvey: false,
      showResult: false,
-     answers: {}
+     answers: {},
+     weights: {}
    }
  }
  startSurvey = () => {
@@ -19,11 +21,12 @@ export default class SurveyPage extends Component {
      showSurvey: true
    })
  }
- endSurvey = (ans) => {
+ endSurvey = (ans, wgt) => {
    this.setState({
      showResult: true,
      showSurvey: false,
-     answers: ans
+     answers: ans,
+     weights: wgt
    })
  }
  reset = () => {
@@ -31,16 +34,21 @@ export default class SurveyPage extends Component {
      showIntro: true,
      showResult: false,
      showSurvey: false,
-     answers: {}
+     answers: {},
+     weights: {}
    })
  }
  render() {
    return(
-     <div style={{backgroundColor: 'purple'}}>
-        <h2>Survey Page</h2>
+     <div class="main_screen">
+       <div class="nav_bar">
+               <ul class="navigation_bar">
+                   <li><a class="logo_link"><img src={Image} alt="Village Logo" class="logo_picture" style={{width:"100vw"}}/></a></li>
+               </ul>
+       </div>
         {this.state.showIntro && <Intro func={this.startSurvey}/>}
         {this.state.showSurvey && <Survey submit={this.endSurvey}/>}
-        {this.state.showResult && <Result answers={this.state.answers} reset={this.reset}/>}
+        {this.state.showResult && <Result answers={this.state.answers} weights={this.state.weights} reset={this.reset}/>}
      </div>
    )
  }
