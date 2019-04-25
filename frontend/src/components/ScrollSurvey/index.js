@@ -28,7 +28,11 @@ export default class ScrollSurvey extends Component {
  }
  onQuestion = (i, r) => {
    var q = this.state.questions;
-   q[i]['response'] = r;
+   if(q[i]['response'] === r){
+     q[i]['response'] = null;
+   }else{
+     q[i]['response'] = r;
+   }
    this.setState({
      questions: q
    });
