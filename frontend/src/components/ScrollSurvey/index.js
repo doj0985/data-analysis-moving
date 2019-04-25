@@ -109,16 +109,17 @@ export default class ScrollSurvey extends Component {
                 }
               )
             }
-            <section>
+            <section style={{marginBottom:'20vh'}}>
   						<header>
-
+                <h2>Results</h2>
   						</header>
   						<div class="content">
   							<a onClick={() => this.onCalc()} class="button primary large" style={{}}>Calculate</a>
   						</div>
   					</section>
+            {this.state.neighborhoods && <Result neighborhoods={this.state.neighborhoods}/>}
   			</div>
-        {this.state.neighborhoods && <Result neighborhoods={this.state.neighborhoods}/>}
+
       </div>
 
    )

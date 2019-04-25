@@ -10,13 +10,13 @@ export default class Neighborhood extends Component {
  }
  render() {
    return(
-     <section id="first">
+     <section id="">
        <header>
          <h2>{this.props.content.neighborhood.Neighborhood}</h2>
        </header>
        <div class="content">
          <strong>Closeness</strong>
-         <ProgressBar animated now={this.props.content.closeness} label={"~" + Math.round(this.props.content.closeness) + "%"}/>
+         <ProgressBar animated now={this.props.content.closeness} label={"" + Math.round(this.props.content.closeness) + "%"}/>
        </div>
      </section>
    )
