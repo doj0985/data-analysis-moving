@@ -20,9 +20,9 @@ export default class Question extends Component {
              this.props.content.labels.map(
                function(label, i){
                  if(this.response === i){
-                   return <button onClick={() => this.onQ(this.qIndex, i)} class="button primary large" style={{width:'6vw', textAlign:'center', padding:'0%', marginLeft:'1vw'}}>{label}</button>
+                   return <button onClick={() => this.onQ(this.qIndex, i)} class="button primary large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
                  } else {
-                   return <button onClick={() => this.onQ(this.qIndex, i)} class="button large" style={{width:'6vw', textAlign:'center', padding:'0%', marginLeft:'1vw'}}>{label}</button>
+                   return <button onClick={() => this.onQ(this.qIndex, i)} class="button large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
                  }
                },
                {
@@ -39,9 +39,9 @@ export default class Question extends Component {
              [1, 2, 3, 4, 5].map(
                function(label, i){
                  if(this.weight === label){
-                   return <button onClick={() => this.onW(this.qIndex, label)} class="button primary large" style={{width:'6vw', textAlign:'center', padding:'0%', marginLeft:'1vw'}}>{label}</button>
+                   return <button onClick={() => this.onW(this.qIndex, label)} class="button primary large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
                  } else {
-                   return <button onClick={() => this.onW(this.qIndex, label)} class="button large" style={{width:'6vw', textAlign:'center', padding:'0%', marginLeft:'1vw'}}>{label}</button>
+                   return <button onClick={() => this.onW(this.qIndex, label)} class="button large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
                  }
                },
                {

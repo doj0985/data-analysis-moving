@@ -5,34 +5,40 @@ export default class Result extends Component {
  constructor(props) {
    super(props)
    this.state = {
-
+     page: 1
    }
  }
+ loadMore = () => {
+   var p = this.state.page;
+   this.setState({
+     page: p+1
+   })
+ }
  render() {
-     return(
-       // <div id="wrapper" style={{padding:'0%'}}>
-       //   <section class="intro" style={{padding:'0%'}}>
-       //     <header>
-       //       <h1>Results</h1>
-       //       <p>These were the neighborhoods we matched you with</p>
-       //       <ul class="actions">
-       //         <li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
-       //       </ul>
-       //     </header>
-       //     <div class="content">
-       //       <span class="image fill" data-position="center"><img src={Image} alt="" style={{width: '40vw', height: 'auto', marginLeft: 'auto', marginRight: 'auto'}}/></span>
-       //     </div>
-       //   </section>
+   return(
           <div>
          {
            this.props.neighborhoods.map(
              function(neighborhood, i){
-               return <Neighborhood key={i} content={neighborhood}/>
+               if(i < this.page*5){
+                 return <Neighborhood key={i} index={i} content={neighborhood}/>
+               }
+             },
+             {
+               page: this.state.page
              }
            )
          }
+         <section style={{marginBottom:'20vh'}}>
+           <header>
+
+           </header>
+           <div class="content">
+             <button onClick={() => this.loadMore()} class="button primary large" style={{}}>Load More</button>
+           </div>
+         </section>
        </div>
-     )
+  )
  }
 
 }

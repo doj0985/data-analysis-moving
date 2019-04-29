@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Image from "./family.png";
 import Question from './Question.js';
 import Result from './Result.js';
+import ResultModal from './ResultModal.js';
 import axios from 'axios';
 
 export default class ScrollSurvey extends Component {
@@ -44,43 +45,43 @@ export default class ScrollSurvey extends Component {
      questions: q
    })
  }
- onCalc = () => {
-   var vd = this.valueDict();
-   var wd = this.weightDict();
-   const data = {
-     'value_dict': vd,
-     'weight_dict': wd
-   }
-   console.log(data);
-   axios.post(`https://us-central1-moving-233718.cloudfunctions.net/predict-cors`, data).then(res => {
-     console.log(res.data);
-     this.setState({
-       neighborhoods: res.data
-     })
-   }).catch(err => {
-     console.log(err)
-   });
- }
- valueDict = () => {
-   var res = {}
-   for(var i in this.state.questions) {
-      var q = this.state.questions[i]
-      var value = q['response'];
-      if(value !== null){
-        res[q['title']] = value
-      }
-    }
-    return res
- }
- weightDict = () => {
-   var res = {}
-   for(var i in this.state.questions) {
-     var q = this.state.questions[i]
-      var weight = q['weight'];
-      res[q['title']] = weight
-    }
-    return res
- }
+ // onCalc = () => {
+ //   var vd = this.valueDict();
+ //   var wd = this.weightDict();
+ //   const data = {
+ //     'value_dict': vd,
+ //     'weight_dict': wd
+ //   }
+ //   console.log(data);
+ //   axios.post(`https://us-central1-moving-233718.cloudfunctions.net/predict-cors`, data).then(res => {
+ //     console.log(res.data);
+ //     this.setState({
+ //       neighborhoods: res.data
+ //     })
+ //   }).catch(err => {
+ //     console.log(err)
+ //   });
+ // }
+ // valueDict = () => {
+ //   var res = {}
+ //   for(var i in this.state.questions) {
+ //      var q = this.state.questions[i]
+ //      var value = q['response'];
+ //      if(value !== null){
+ //        res[q['title']] = value
+ //      }
+ //    }
+ //    return res
+ // }
+ // weightDict = () => {
+ //   var res = {}
+ //   for(var i in this.state.questions) {
+ //     var q = this.state.questions[i]
+ //      var weight = q['weight'];
+ //      res[q['title']] = weight
+ //    }
+ //    return res
+ // }
  render() {
    // const value_dict = this.valueDict();
    // const weight_dict = this.weightDict();
@@ -113,15 +114,15 @@ export default class ScrollSurvey extends Component {
                 }
               )
             }
-            <section style={{marginBottom:'20vh'}}>
+            <section>
   						<header>
                 <h2>Results</h2>
   						</header>
   						<div class="content">
-  							<a onClick={() => this.onCalc()} class="button primary large" style={{}}>Calculate</a>
+  							<ResultModal questions={this.state.questions}/>
   						</div>
   					</section>
-            {this.state.neighborhoods && <Result neighborhoods={this.state.neighborhoods}/>}
+
   			</div>
 
       </div>
