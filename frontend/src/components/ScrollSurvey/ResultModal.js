@@ -56,9 +56,37 @@ export default class ResultModal extends Component {
  render() {
    let valueDict = this.valueDict();
    let weightDict = this.weightDict();
+   if(this.state.demo){
+     valueDict = {
+       'Density': 4,
+       'Family Percentage': 1,
+       'Home Value': 1,
+       'House Size': 1,
+       'Income': 4,
+       'Majority Age': 1,
+       'Neighborhood Size': 1,
+       'Rent': 1,
+       'Transit Closeness': 4,
+       'Transit Cost': 0
+     };
+     weightDict = {
+       'Density': 1,
+       'Family Percentage': 1,
+       'Home Value': 1,
+       'House Size': 1,
+       'Income': 1,
+       'Majority Age': 1,
+       'Neighborhood Size': 1,
+       'Rent': 1,
+       'Transit Closeness': 1,
+       'Transit Cost': 1
+     };
+   }
+   console.log(valueDict);
    return(
      <div>
-      <button onClick={() => {this.setState({show:true})}} class="button primary large" style={{}}>Calculate</button>
+      <button onClick={() => {this.setState({show:true, demo: false})}} class="button primary large" style={{}}>Calculate</button>
+      <button onClick={() => {this.setState({show:true, demo: true})}} class="button large" style={{}}>Demo</button>
       <Modal
          size="lg"
          show={this.state.show}

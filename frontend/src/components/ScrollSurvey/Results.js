@@ -42,12 +42,13 @@ export default class Results extends Component {
                this.state.neighborhoods.map(
                  function(neighborhood, i){
                    if(i < this.page*5){
-                     return <Neighborhood key={i} index={i} content={neighborhood} input={this.input}/>
+                     return <Neighborhood key={i} index={i} content={neighborhood} input={this.input} weight={this.weight}/>
                    }
                  },
                  {
                    page: this.state.page,
-                   input: this.props.valueDict
+                   input: this.props.valueDict,
+                   weight: this.props.weightDict
                  }
                )
              }

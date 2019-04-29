@@ -8,7 +8,7 @@ export default class Neighborhood extends Component {
  constructor(props) {
    super(props)
    this.state = {
-
+     showDet: false
    }
  }
  render() {
@@ -19,8 +19,8 @@ export default class Neighborhood extends Component {
        </header>
        <div class="content">
          <strong>Match Rating:</strong>
-         <ProgressBar now={this.props.content.closeness} label={"" + Math.round(this.props.content.closeness) + "%"}/>
-         <div style={{margin:'5%'}}>
+         <ProgressBar now={this.props.content.closeness} label={"" + Math.round(this.props.content.closeness) + "%"}/><a onClick={()=>{var sD = !this.state.showDet; this.setState({showDet:sD})}}>details</a>
+         {this.state.showDet && <div style={{margin:'5%'}}>
            <Row>
            {
              Object.keys(this.props.content.b_neighborhood).map(
@@ -57,12 +57,13 @@ export default class Neighborhood extends Component {
                {
                  binned: this.props.content.b_neighborhood,
                  unbinned: this.props.content.u_neighborhood,
-                 input: this.props.input
+                 input: this.props.input,
+                 weight: this.props.weight
                }
              )
            }
            </Row>
-         </div>
+         </div>}
        </div>
      </section>
    )
