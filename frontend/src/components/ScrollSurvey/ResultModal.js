@@ -71,15 +71,15 @@ export default class ResultModal extends Component {
      };
      weightDict = {
        'Density': 1,
-       'Family Percentage': 1,
-       'Home Value': 1,
-       'House Size': 1,
-       'Income': 1,
-       'Majority Age': 1,
+       'Family Percentage': 5,
+       'Home Value': 2,
+       'House Size': 2,
+       'Income': 3,
+       'Majority Age': 5,
        'Neighborhood Size': 1,
-       'Rent': 1,
-       'Transit Closeness': 1,
-       'Transit Cost': 1
+       'Rent': 5,
+       'Transit Closeness': 3,
+       'Transit Cost': 3
      };
    }
    console.log(valueDict);
