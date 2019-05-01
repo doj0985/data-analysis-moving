@@ -33,15 +33,15 @@ export default class Question extends Component {
              )
            }
           </ul>
-         <h3>How important is this to you?</h3>
+         <h3>How important is this to you on a scale of 1-5? (5 being most important)</h3>
          <ul class="actions" style={{paddingLeft:'5vw', paddingRight:'5vw'}}>
            {
              [1, 2, 3, 4, 5].map(
                function(label, i){
                  if(this.weight === label){
-                   return <button onClick={() => this.onW(this.qIndex, label)} class="button primary large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
+                   return <button onClick={() => this.onW(this.qIndex, i+1)} class="button primary large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
                  } else {
-                   return <button onClick={() => this.onW(this.qIndex, label)} class="button large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
+                   return <button onClick={() => this.onW(this.qIndex, i+1)} class="button large" style={{width:'20%', textAlign:'center', padding:'0%', marginLeft:'2%'}}>{label}</button>
                  }
                },
                {
