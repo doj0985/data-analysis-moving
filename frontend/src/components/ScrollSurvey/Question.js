@@ -9,7 +9,7 @@ export default class Question extends Component {
  }
  render() {
    return(
-     <section id="">
+     <section  id="questions">
        <header>
          <h2>{this.props.content.title}</h2>
        </header>

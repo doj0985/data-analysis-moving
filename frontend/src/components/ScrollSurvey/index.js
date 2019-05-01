@@ -100,7 +100,7 @@ export default class ScrollSurvey extends Component {
                   <li>If you're unsure about which option to choose for a question, take an educated guess based on our 1-5 based bins. Each bin set is evenly distributed within the austin area, and as such represent an equal portion of the neighborhoods here.</li>
                 </ul>
   							<ul class="actions">
-  								<li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
+  								<li><a href="#questions" class="arrow scrolly"><span class="label">Next</span></a></li>
   							</ul>
   						</header>
   						<div class="content">
@@ -118,7 +118,7 @@ export default class ScrollSurvey extends Component {
                 }
               )
             }
-            <section>
+            <section id="results">
   						<header>
                 <h2>Results</h2>
   						</header>

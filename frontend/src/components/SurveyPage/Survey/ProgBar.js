@@ -13,12 +13,12 @@ export default class ProgBar extends Component {
            function(done, i){
              if (done == 1){
                if(this.i == i){
-                 return <i class="fas fa-question-circle fa-2x prog" style={{color: '#5db333'}}></i>;
+                 return <i class="fas fa-question-circle fa-2x prog" style={{color: '#43d9b8'}}></i>;
                }
                return <i class="fas fa-question-circle fa-2x prog" style={{color: 'black'}} onClick={() => this.func(i)}></i>;
              } else {
                if(this.i == i){
-                 return <i class="far fa-question-circle fa-2x prog" style={{color: '#5db333'}}></i>;
+                 return <i class="far fa-question-circle fa-2x prog" style={{color: '#43d9b8'}}></i>;
                }
                return <i class="far fa-question-circle fa-2x prog" style={{color: 'black'}} onClick={() => this.func(i)}></i>;
              }
